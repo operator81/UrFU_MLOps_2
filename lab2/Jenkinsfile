@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+    stages {
+        stage('Download Dataset') {
+            steps {
+                script {
+                    sh 'bash lab2/download_dataset.sh'
+                }
+            }
+        }
+        stage('Load Data') {
+            steps {
+                script {
+                    sh 'python lab2/load_data.py'
+                }
+            }
+        }
+        stage('Process Data') {
+            steps {
+                script {
+                    sh 'python lab2/process_data.py'
+                }
+            }
+        }
+        stage('Train Model') {
+            steps {
+                script {
+                    sh 'python lab2/train_model.py'
+                }
+            }
+        }
+        stage('Evaluate Model') {
+            steps {
+                script {
+                    sh 'python lab2/evaluate_model.py'
+                }
+            }
+        }
+    }
+}
